@@ -1,0 +1,1 @@
+COPY .env /usr/local/apache2/htdocs/

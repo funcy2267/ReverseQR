@@ -1,0 +1,117 @@
+body {
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 98vh;
+
+}
+
+.github-banner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.github-banner img {
+    pointer-events: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+#mainApp {
+    text-align: center;
+    display: block;
+    margin: 0px 50px;
+    transition: opacity 500ms ease-in-out;
+    flex: 1;
+}
+
+.mainAppAnimation {
+    opacity: 0;
+}
+
+#mainApp * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#navBar {
+    padding-top: 5px;
+    padding-left: 10px;
+    margin-bottom: 25px;
+}
+
+#navBar * {
+    display: inline;
+}
+
+#deviceCodeBox1 * {
+    display: inline;
+}
+
+#messageInput {
+    resize: none;
+    max-width: 500px;
+}
+
+#sendButton {
+    width: 200px;
+}
+
+#messageArea {
+    text-align: left;
+}
+
+.chatboxMessage {
+    display: inline;
+}
+
+.chatboxUserOther {
+    color: darkred;
+}
+
+.chatboxUserYou {
+    color: darkblue;
+}
+
+#titleReverseQR {
+    cursor: pointer;
+    transition: color 500ms ease;
+}
+
+#titleReverseQR:hover {
+    color: grey;
+}
+
+footer {
+    text-align: center;
+    background-color: whitesmoke;
+    color: gray;
+    padding: 15px 0px;
+}
+
+footer a {
+    color: grey;
+    text-decoration: underline;
+}
+
+#qrcode1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#connectionInfo1 {
+    margin-top: 10px;
+}
+
+#connectionInfo2 {
+    margin-bottom: 10px;
+}
+
+.button {
+    margin: 5px !important;
+}

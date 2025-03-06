@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>ReverseQR</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- import external libs -->
+	<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/qrcode.min.js"></script>
+	<script src="https://unpkg.com/html5-qrcode"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<!-- get font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+	<!-- load semantic-ui -->
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.jsdelivr.net/gh/Semantic-Org/Semantic-UI-CSS@2.5.0/semantic.min.css">
+	<script src="https://cdn.jsdelivr.net/gh/Semantic-Org/Semantic-UI-CSS@2.5.0/semantic.min.js"></script>
+</head>
+
+<body>
+	<a href="https://github.com/funcy2267/ReverseQR" class="github-banner"><img decoding="async" width="150"
+			height="150" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png"
+			class="attachment-full size-full" alt="Fork me on GitHub" loading="lazy"></a>
+	<!-- components -->
+	<div class="hidden" id="components">
+		<div class="hidden" id="qrscanner">
+			<div id="qr-reader" style="width: 500px;"></div>
+			<button class="ui button" id="stopScanningButton" onclick="stopQRScanner();">Stop scanning</button>
+		</div>
+		<div class="hidden" id="chatbox">
+			<div id="connectionStatus"></div>
+			<div class="ui form" id="messageInputContainer">
+				<textarea rows="2" type="text" id="messageInput" placeholder="Enter your message"></textarea>
+			</div>
+			<button class="ui button" id="sendButton"
+				onclick='sendMessage({type: "chatMessage", content: formatMessage(messageInput.value)}); messageInput.value = "";'>Send</button>
+			<br>
+			<button class="ui button" id="disconnectButton" onclick="disconnectButton();">Disconnect</button>
+			<button class="ui button" id="clearChat" onclick="clearChat();">Clear</button>
+			<div id="messageArea" style="height: 200px; overflow-y: scroll;"></div>
+		</div>
+	</div>
+	<div id="navBar">
+		<h1 id="titleReverseQR" onclick="backToClientSelect();" alt="Back to client select">ReverseQR</h1>
+	</div>
+	<div id="mainApp">
+		<div class="hidden" id="clientSelect">
+			<h2>Select client</h2>
+			<button class="ui button" id="selectClientMode1" onclick="selectClientMode(1);">Connect with
+				this device</button><br>
+			<button class="ui button" id="selectClientMode2" onclick="selectClientMode(2);">Connect with
+				other device</button><br>
+			<button class="ui button" id="selectClientMode3" onclick="selectClientMode(3);">Connect 2 other
+				devices</button>
+		</div>
+
+		<div class="hidden" id="clients">
+			<!-- client side 1 -->
+			<div class="hidden" id="client1">
+				<h2>Connect with this device</h2>
+				<button class="ui button" id="generateQRCodeButton1" onclick="generateQRCode1();">Generate QR
+					code</button>
+				<div class="hidden" id="connectionInfo1">
+					<div id="deviceCodeBox1">
+						<div>Device code: </div>
+						<div id="deviceCode1">-</div>
+					</div>
+					<a id="connectLink1" target="_blank"></a><br>
+					<button class="ui button" id="copyCodeButton1"
+						onclick="navigator.clipboard.writeText(document.getElementById('deviceCode1').textContent);">Copy
+						code</button>
+					<button class="ui button" id="copyLinkButton1"
+						onclick="navigator.clipboard.writeText(document.getElementById('connectLink1').textContent);">Copy
+						link</button>
+					<div id="qrcode1"></div>
+				</div>
+			</div>
+			<!-- client side 2 -->
+			<div class="hidden" id="client2">
+				<h2>Connect with other device</h2>
+				<div id="connectionInfo2">
+					<div class="ui input">
+						<input class="textbox" type="text" id="otherDeviceCodeInput2" placeholder="Other device code">
+					</div>
+					<button class="ui button" id="connectButton2"
+						onclick="connect2(otherDeviceCodeInput2.value);">Connect</button>
+					<button class="ui button" id="scanQR2" onclick="scanQR2();">Start scanning</button>
+				</div>
+			</div>
+			<!-- client side 3 -->
+			<div class="hidden" id="client3">
+				<h2>Connect 2 other devices</h2>
+				<button class="ui button" id="get1Device3" onclick="scanQR3(0);">Device
+					1</button>
+				<button class="ui button" id="get2Device3" onclick="scanQR3(1);">Device
+					2</button><br>
+				<button class="ui button" id="pairDevices3" onclick="pairDevices();">Pair devices</button>
+				<div id="pairStatus3"></div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<p>Made by <a href="https://funcy.me">funcy</a></p>
+	</footer>
+</body>
+<script src="environment.js"></script>
+<script src="ui.js"></script>
+<script src="components.js"></script>
+<script src="client.js"></script>
+
+</html>
